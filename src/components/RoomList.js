@@ -24,6 +24,7 @@ createRoom(e){
   this.roomsRef.push({
     name: newRoomName
   });
+  this.setState({ name: '' });
 }
 
 componentDidMount(){
