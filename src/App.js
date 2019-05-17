@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeRoom: ""
+      activeRoom: null
     };
 
     this.handleRoomChange = this.handleRoomChange.bind(this);
@@ -47,10 +47,12 @@ class App extends Component {
              </div>
              <div className="Message-List">
                <h2>{this.state.activeRoom ? this.state.activeRoom.name : 'Pick a room!'}</h2>
+               {this.state.activeRoom && (
                <MessageList
                  firebase = {firebase}
                  activeRoom = {this.state.activeRoom}
                />
+             )}
              </div>
            </section>
          </main>

@@ -26,7 +26,7 @@ render() {
     <div className = "message-list">
       <div>
       {this.state.messages.filter(message =>
-        message.roomId == this.props.activeRoom.key).map((message, index) =>
+        message.roomID == this.props.activeRoom.key).map((message, index) =>
         <p>{message.content}{"  "}
         {message.sentAt}{"  "}
         {message.username}</p>)}
