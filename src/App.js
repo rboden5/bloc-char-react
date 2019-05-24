@@ -3,6 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
+import User from './components/user.js';
 
 var config = {
   apiKey: "AIzaSyCsguLLm5AlXcEPYD-_5B1b5N_KsZq0Q40",
@@ -19,14 +20,21 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeRoom: null
+      activeRoom: null,
+      user: null,
     };
 
     this.handleRoomChange = this.handleRoomChange.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
   handleRoomChange(e){
     this.setState({activeRoom: e});
+  }
+
+  setUser(user){
+    this.setState({user: user});
+    console.log(user);
   }
 
   render() {
@@ -37,6 +45,14 @@ class App extends Component {
          </header>
          <main>
            <section className ="chat-wrapper">
+           <div className = "left-wrapper">
+              <div className="User-Name">
+                <User
+                  firebase = {firebase}
+                  user = {this.state.user}
+                  setUser = {(user) => this.setUser(user)}
+                />
+              </div>
              <div className="Room-List">
              <RoomList
                firebase={firebase}
@@ -53,6 +69,7 @@ class App extends Component {
                  activeRoom = {this.state.activeRoom}
                />
              )}
+             </div>
              </div>
            </section>
          </main>
